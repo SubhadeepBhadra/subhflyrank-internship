@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="900" height="520" rx="20" fill="#07111f"/>
+  <rect x="40" y="40" width="820" height="440" rx="18" fill="#0f172a" stroke="#1e293b"/>
+  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#e2e8f0">Figure 3</text>
+  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#94a3b8">Correlation matrix of key search metrics</text>
+  <rect x="170" y="160" width="260" height="260" rx="12" fill="#0f172a" stroke="#334155"/>
+  <rect x="470" y="160" width="260" height="260" rx="12" fill="#0f172a" stroke="#334155"/>
+  <rect x="190" y="180" width="60" height="60" rx="8" fill="#06b6d4"/>
+  <rect x="280" y="180" width="60" height="60" rx="8" fill="#6366f1"/>
+  <rect x="370" y="180" width="40" height="60" rx="8" fill="#d946ef"/>
+  <rect x="490" y="180" width="60" height="80" rx="8" fill="#06b6d4"/>
+  <rect x="580" y="180" width="60" height="40" rx="8" fill="#f59e0b"/>
+  <rect x="670" y="180" width="40" height="100" rx="8" fill="#f8fafc" opacity="0.9"/>
+  <text x="220" y="430" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#cbd5e1">CTR</text>
+  <text x="300" y="430" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#cbd5e1">Clicks</text>
+  <text x="390" y="430" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#cbd5e1">Position</text>
+</svg>

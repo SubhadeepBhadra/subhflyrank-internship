@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="900" height="520" rx="20" fill="#07111f"/>
+  <rect x="40" y="40" width="820" height="440" rx="18" fill="#0f172a" stroke="#1e293b"/>
+  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#e2e8f0">Figure 7</text>
+  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#94a3b8">Feature importance rankings</text>
+  <rect x="180" y="260" width="70" height="120" rx="8" fill="#06b6d4"/>
+  <rect x="300" y="220" width="70" height="160" rx="8" fill="#6366f1"/>
+  <rect x="420" y="240" width="70" height="140" rx="8" fill="#d946ef"/>
+  <rect x="540" y="280" width="70" height="100" rx="8" fill="#f59e0b"/>
+  <rect x="660" y="300" width="70" height="80" rx="8" fill="#f8fafc" opacity="0.9"/>
+  <line x1="140" y1="390" x2="760" y2="390" stroke="#475569" stroke-width="2"/>
+  <line x1="140" y1="120" x2="140" y2="390" stroke="#475569" stroke-width="2"/>
+</svg>

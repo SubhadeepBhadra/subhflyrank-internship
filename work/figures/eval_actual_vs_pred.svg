@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="900" height="520" rx="20" fill="#07111f"/>
+  <rect x="40" y="40" width="820" height="440" rx="18" fill="#0f172a" stroke="#1e293b"/>
+  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#e2e8f0">Figure 5</text>
+  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#94a3b8">Actual vs predicted CTR</text>
+  <line x1="140" y1="390" x2="760" y2="110" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 6"/>
+  <line x1="140" y1="390" x2="140" y2="110" stroke="#475569" stroke-width="2"/>
+  <line x1="140" y1="390" x2="760" y2="390" stroke="#475569" stroke-width="2"/>
+  <circle cx="220" cy="340" r="6" fill="#06b6d4"/>
+  <circle cx="300" cy="315" r="6" fill="#06b6d4"/>
+  <circle cx="380" cy="275" r="6" fill="#06b6d4"/>
+  <circle cx="460" cy="240" r="6" fill="#06b6d4"/>
+  <circle cx="540" cy="205" r="6" fill="#06b6d4"/>
+  <circle cx="620" cy="180" r="6" fill="#06b6d4"/>
+  <circle cx="700" cy="150" r="6" fill="#06b6d4"/>
+</svg>
