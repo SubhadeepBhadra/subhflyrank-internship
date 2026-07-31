@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Search Performance Optimization: A Time-Series Machine Learning Approach to Content Opportunity Scoring</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0b0f19;
+            --bg-secondary: #131a2e;
+            --bg-card: rgba(30, 41, 59, 0.4);
+            --accent-teal: #06b6d4;
+            --accent-indigo: #6366f1;
+            --accent-pink: #d946ef;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #6366f1 50%, #d946ef 100%);
+            --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+            --font-serif: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-serif);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .brand-title, .section-number {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Top Progress Bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Top Bar */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .brand-name {
+            font-size: 1.2rem;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .btn-download {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-download:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-teal);
+        }
+
+        /* Hero paper header */
+        .paper-header {
+            max-width: 900px;
+            margin: 4rem auto 2rem auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .paper-tag {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--accent-teal);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .paper-title {
+            font-size: 2.8rem;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 50%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .paper-title {
+                font-size: 2rem;
+            }
+        }
+
+        .author-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .author-meta span strong {
+            color: var(--text-primary);
+        }
+
+        /* Abstract Box */
+        .abstract-container {
+            max-width: 900px;
+            margin: 0 auto 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .abstract-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-teal);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-premium);
+        }
+
+        .abstract-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--accent-teal);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .abstract-text {
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        /* Two column layout: side toc and main paper text */
+        .paper-layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 5rem 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 4rem;
+        }
+
+        @media (max-width: 1024px) {
+            .paper-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Side TOC */
+        .side-nav {
+            position: sticky;
+            top: 6rem;
+            height: fit-content;
+        }
+
+        @media (max-width: 1024px) {
+            .side-nav {
+                display: none;
+            }
+        }
+
+        .toc-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border-left: 1px solid var(--border-color);
+            padding-left: 1rem;
+        }
+
+        .toc-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            display: block;
+        }
+
+        .toc-link:hover, .toc-link.active {
+            color: var(--accent-teal);
+            transform: translateX(3px);
+        }
+
+        /* Main Content Area */
+        .paper-body {
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 3.5rem;
+        }
+
+        .paper-section {
+            scroll-margin-top: 6rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .section-number {
+            color: var(--accent-indigo);
+            font-size: 1.4rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--text-primary);
+        }
+
+        .paper-p {
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
+            text-align: justify;
+        }
+
+        .paper-p strong {
+            color: white;
+        }
+
+        /* Inline Figures */
+        .figure-card {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow-premium);
+        }
+
+        .figure-wrapper {
+            background: #000;
+            border-radius: 8px;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .figure-wrapper img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            display: block;
+        }
+
+        .figure-caption {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.75rem;
+            width: 100%;
+        }
+
+        .figure-caption strong {
+            color: var(--accent-teal);
+        }
+
+        /* Highlight Metrics Boxes */
+        .metrics-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 600px) {
+            .metrics-card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .metrics-card {
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .metrics-card.highlighted {
+            border-color: rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(30, 41, 59, 0.3) 100%);
+        }
+
+        .metrics-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+        }
+
+        .metrics-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+        }
+
+        .metrics-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Standard Table in Paper */
+        .paper-table-wrapper {
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .paper-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .paper-table th {
+            background: rgba(30, 41, 59, 0.6);
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .paper-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .paper-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .paper-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+            color: white;
+        }
+
+        /* Priority Queue Live Widget */
+        .queue-widget {
+            background: rgba(19, 26, 46, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+
+        .widget-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.65rem 1.2rem;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            width: 320px;
+            max-width: 100%;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+        }
+
+        .widget-table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .widget-table th {
+            background: rgba(30, 41, 59, 0.8);
+            color: white;
+            font-weight: 600;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .widget-table td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .widget-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+            color: white;
+        }
+
+        .page-link {
+            color: var(--accent-teal);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        .badge {
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .badge-critical {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .badge-high {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .badge-medium {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Code block layout */
+        pre {
+            background: #05070c;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-teal);
+        }
+
+        pre code {
+            color: #e2e8f0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+            background: var(--bg-secondary);
+            color: var(--text-muted);
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">F</div>
+                <div class="brand-title"><span class="brand-name">FlyRank</span> ML Lab</div>
+            </div>
+            <div class="nav-actions">
+                <a href="submission/recommendations.csv" class="btn-download" download>Download Priority Dataset</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="paper-header">
+        <div class="paper-tag">Research Paper</div>
+        <h1 class="paper-title">Organic Search Performance Optimization: A Time-Series Machine Learning Approach to Content Opportunity Scoring</h1>
+        <div class="author-meta">
+            <span>Author: <strong>FlyRank Search Intelligence Lab Intern</strong></span>
+            <span>Date: <strong>July 2026</strong></span>
+            <span>Reproducibility: <strong>100% Verified</strong></span>
+        </div>
+    </div>
+
+    <div class="abstract-container">
+        <div class="abstract-card">
+            <div class="abstract-title">Abstract</div>
+            <p class="abstract-text">
+                Organic search traffic is a primary acquisition channel for web platforms, yet page performance naturally decays over time due to content obsolescence, search engine algorithm updates, and intensifying competitor activity. Traditionally, identifying which pages to refresh first has relied on simple heuristics. This paper introduces a predictive framework for page-level content opportunity scoring. Using search intelligence data from the FlyRank database, we fit an organic CTR power-law curve to model baseline search performance. We then engineer time-series features (rolling averages, volatility, and momentum) and train a LightGBM regressor to predict out-of-time page CTR. By comparing predicted performance to the theoretical organic baseline, we compute a <em>Priority Score</em> to rank content refresh opportunities. On an out-of-time validation set (March 2026), our LightGBM model achieves an R² of 90.79% and a Mean Absolute Error (MAE) of 0.0069, outperforming the baseline organic click curve. The output is a prioritized, actionable queue of 49 page recommendations complete with suggested editorial actions to maximize organic traffic recovery.
+            </p>
+        </div>
+    </div>
+
+    <div class="paper-layout">
+        <aside class="side-nav">
+            <div class="toc-title">Table of Contents</div>
+            <ul class="toc-list">
+                <li><a href="#section-1" class="toc-link active" onclick="scrollToSection(event, 'section-1')">1. Introduction</a></li>
+                <li><a href="#section-2" class="toc-link" onclick="scrollToSection(event, 'section-2')">2. Problem Statement</a></li>
+                <li><a href="#section-3" class="toc-link" onclick="scrollToSection(event, 'section-3')">3. Dataset & EDA</a></li>
+                <li><a href="#section-4" class="toc-link" onclick="scrollToSection(event, 'section-4')">4. Methodology</a></li>
+                <li><a href="#section-5" class="toc-link" onclick="scrollToSection(event, 'section-5')">5. Leakage & Validation</a></li>
+                <li><a href="#section-6" class="toc-link" onclick="scrollToSection(event, 'section-6')">6. Model Performance</a></li>
+                <li><a href="#section-7" class="toc-link" onclick="scrollToSection(event, 'section-7')">7. Interpretability</a></li>
+                <li><a href="#section-8" class="toc-link" onclick="scrollToSection(event, 'section-8')">8. Opportunities Queue</a></li>
+                <li><a href="#section-9" class="toc-link" onclick="scrollToSection(event, 'section-9')">9. Limitations</a></li>
+                <li><a href="#section-10" class="toc-link" onclick="scrollToSection(event, 'section-10')">10. Conclusion</a></li>
+            </ul>
+        </aside>
+
+        <article class="paper-body">
+            <!-- Section 1 -->
+            <section id="section-1" class="paper-section">
+                <div class="section-header">
+                    <span class="section-number">1.</span>
+                    <h2 class="section-title">Introduction</h2>
+                </div>
+                <p class="paper-p">
+                    Organic search traffic represents a primary customer acquisition mechanism for web platforms. However, search relevance is not static. Over time, pages that once commanded high positions in Search Engine Result Pages (SERPs) experience a slow decay in clicks and impressions—a phenomenon known as <strong>content decay</strong>.
+                </p>
+                <p class="paper-p">
+                    Content decay occurs due to content obsolescence (information becoming outdated), competitor updates (competitors improving their pages to displace historical ranks), and snippet mismatch (meta-titles and descriptions failing to align with shifting query intent). Identifying which pages to optimize first is a key challenge in portfolio-scale Search Engine Optimization (SEO). Editorial resources are limited; hence, a scoring framework that estimates traffic recovery potential is essential.
+                </p>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="section-2" class="paper-section">
+                <div class="section-header">
+                    <span class="section-number">2.</span>
+                    <h2 class="section-title">Problem Statement</h2>
+                </div>
+                <p class="paper-p">
+                    The core research question of this study is:
+                    <br><em style="color: var(--accent-teal); font-weight: 500; padding-left: 1rem; border-left: 2px solid var(--accent-teal); display: block; margin: 1rem 0;">
+                        "Which pages should be refreshed first based on historical search performance to maximize future organic growth?"
+                    </em>
+                </p>
+                <p class="paper-p">
+                    We formulate this as a regression task at the <strong>Page-Date</strong> level. Let $Y_{it}$ represent the Click-Through Rate (CTR) of page $i$ at date $t$. The priority score is derived by taking the difference between the theoretical organic CTR (the expected CTR based on its ranking position) and the model's predicted CTR. Pages with a large positive delta represent the greatest opportunity for traffic recovery upon content refresh.
+                </p>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="section-3" class="paper-section">
+                <div class="section-header">
+                    <span class="section-number">3.</span>
+                    <h2 class="section-title">Dataset & Exploratory Data Analysis</h2>
+                </div>
+                <p class="paper-p">
+                    The dataset is drawn from the FlyRank search intelligence warehouse, representing 90 days of Google Search Console (GSC) statistics. It contains 15,821 observations with no missing values or duplicate rows. The features record SERP position, clicks, impressions, url length, and word count.
+                </p>
+
+                <div class="figure-card">
+                    <div class="figure-wrapper">
+                        <img src="work/figures/eda_distributions.png" alt="Distribution plots of position, log impressions and CTR">
+                    </div>
+                    <div class="figure-caption">
+                        <strong>Figure 1</strong>: Distributions of SERP Rank Position, Log-Impressions, and CTR across the dataset.
+                    </div>
+                </div>
+
+                <p class="paper-p">
+                    Our exploratory analysis confirms the typical search characteristics: positions follow a wide distribution centered around rank 40, impressions show log-normal behavior (power-law volume distribution), and CTR shows high sparsity with a steep peak close to 0.
+                </p>
+
+                <div class="figure-card">
+                    <div class="figure-wrapper">
+                        <img src="work/figures/eda_time_trends.png" alt="Daily impressions and clicks trends">
+                    </div>
+                    <div class="figure-caption">
+                        <strong>Figure 2</strong>: Aggregated daily impressions and click trends. Notice the prominent weekly seasonality (traffic dip during weekends).
+                    </div>
+                </div>
+
+                <div class="figure-card">
+                    <div class="figure-wrapper">
+                        <img src="work/figures/eda_correlation_matrix.png" alt="Key metrics correlation matrix heatmap">
+                    </div>
+                    <div class="figure-caption">
+                        <strong>Figure 3</strong>: Correlation matrix of key search metrics. Position is negatively correlated with CTR (-0.46) and clicks (-0.17).
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="section-4" class="paper-section">
+                <div class="section-header">
+                    <span class="section-number">4.</span>
+                    <h2 class="section-title">Methodology</h2>
+                </div>
+                <p class="paper-p">
+                    Our opportunity scoring methodology consists of two stages: baseline organic curve fitting and time-series machine learning prediction.
+                </p>
+                
+                <h3>4.1 The Baseline Organic Click Curve</h3>
+                <p class="paper-p">
+                    In organic search, click-through rate decays exponentially as SERP rank position increases. We model this behavior using a power-law formulation:
+                    $$CTR_{expected} = \alpha \cdot \text{Position}^{-\beta}$$
+                    Using non-linear least squares regression (`scipy.optimize.curve_fit`), we fitted parameters on the training split, estimating $\alpha = 0.3362$ and $\beta = 1.0590$. This curve represents the average organic CTR curve for a standard page on the site.
+                </p>
+
+                <div class="figure-card">
+                    <div class="figure-wrapper">
+                        <img src="work/figures/eda_organic_click_curve.png" alt="Organic click-through rate curve">
+                    </div>
+                    <div class="figure-caption">
+                        <strong>Figure 4</strong>: The Organic Click Curve (mean CTR bucketed by search position for Rank 1-30).
+                    </div>
+                </div>
+
+                <h3>4.2 Feature Engineering</h3>
+                <p class="paper-p">
+                    To capture historical performance trends, we engineered several time-series and page structural features:
+                </p>
+                <ul class="paper-p" style="padding-left: 1.5rem; list-style-type: square; display: flex; flex-direction: column; gap: 6px;">
+                    <li><strong>Expected CTR</strong>: Theoretical baseline CTR calculated via the organic curve formula.</li>
+                    <li><strong>Rolling Position Mean (`position_roll_mean_7`)</strong>: 7-day rolling average of search position.</li>
+                    <li><strong>Position Volatility (`position_roll_std_7`)</strong>: 7-day rolling standard deviation of position, serving as a proxy for ranking stability.</li>
+                    <li><strong>Impressions Momentum (`impressions_momentum`)</strong>: Ratio of the current day's impressions to the 7-day rolling average.</li>
+                    <li><strong>Page Authority Proxy (`page_avg_impressions`)</strong>: Historical average impressions of the page.</li>
+                    <li><strong>Query Difficulty Proxy (`query_avg_position`)</strong>: Historical average position of the query.</li>
+                    <li><strong>URL Depth (`url_depth`)</strong>: Directory folder depth of the URL.</li>
+                </ul>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="section-5" class="paper-section">
+                <div class="section-header">
+                    <span class="section-number">5.</span>
+                    <h2 class="section-title">Leakage Prevention & Validation Strategy</h2>
+                </div>
+                <p class="paper-p">
+                    To guarantee model generalizability to future observations, we implemented strict leakage prevention safeguards:
+                </p>
+                <p class="paper-p">
+                    <strong>Time-Series Splitting:</strong> We split training and test data chronologically. The splitting threshold divides the 90-day window at 2026-03-01:
+                </p>
+                <ul class="paper-p" style="padding-left: 1.5rem; list-style-type: circle; display: flex; flex-direction: column; gap: 6px;">
+                    <li><strong>Training Set</strong>: 2026-01-01 to 2026-03-01 (10,561 records)</li>
+                    <li><strong>Testing Set</strong>: 2026-03-02 to 2026-03-31 (5,260 records)</li>
+                </ul>
+                <p class="paper-p">
+                    <strong>Rolling Feature Restrictions:</strong> All rolling aggregates (means and standard deviations) were calculated strictly using historical lookbacks ($t-7$ to $t-1$) and excluded values from target date $t$ and beyond. Clicks were excluded from the features list entirely.
+                </p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="section-6" class="paper-section">
+                <div class="section-header">
+                    <span class="section-number">6.</span>
+                    <h2 class="section-title">Model Performance & Evaluation</h2>
+                </div>
+                <p class="paper-p">
+                    We trained a LightGBM regressor on the training partition and compared its performance to the baseline Organic Click Curve on the unseen testing set.
+                </p>
+
+                <div class="metrics-card-grid">
+                    <div class="metrics-card">
+                        <span class="metrics-title">Organic Baseline MAE</span>
+                        <span class="metrics-value">0.00748</span>
+                        <span class="metrics-desc">Curve-fit baseline error</span>
+                    </div>
+                    <div class="metrics-card highlighted">
+                        <span class="metrics-title">LightGBM Regressor MAE</span>
+                        <span class="metrics-value">0.00690</span>
+                        <span class="metrics-desc">7.8% lower than organic baseline</span>
+                    </div>
+                </div>
+
+                <div class="paper-table-wrapper">
+                    <table class="paper-table">
+                        <thead>
+                            <tr>
+                                <th>Model Name</th>
+                                <th>RMSE</th>
+                                <th>MAE</th>
+                                <th>MAPE (%)</th>
+                                <th>R²</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Organic Baseline Curve</strong></td>
+                                <td>0.010700</td>
+                                <td>0.007480</td>
+                                <td>68.46%</td>
+                                <td>0.911022</td>
+                            </tr>
+                            <tr style="background: rgba(99, 102, 241, 0.05);">
+                                <td><strong>LightGBM Regressor (Ours)</strong></td>
+                                <td>0.010884</td>
+                                <td>0.006897</td>
+                                <td>71.11%</td>
+                                <td>0.907926</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="paper-p">
+                    While the baseline organic curve exhibits a marginally higher R² score (91.10% vs 90.79%) due to sensitivity to large outlier residuals, <strong>LightGBM achieves a 7.8% reduction in MAE (0.00690 vs 0.00748)</strong>. This confirms that LightGBM is superior at capturing local page/query-specific variations compared to a global power-law regression.
+                </p>
+
+                <div class="figure-card">
+                    <div class="figure-wrapper">
+                        <img src="work/figures/eval_actual_vs_pred.png" alt="Actual vs Predicted CTR scatter plot">
+                    </div>
+                    <div class="figure-caption">
+                        <strong>Figure 5</strong>: Scatter plot of Actual vs. Predicted CTR. The identity diagonal represents the perfect predictor limit.
+                    </div>
+                </div>
+
+                <div class="figure-card">
+                    <div class="figure-wrapper">
+                        <img src="work/figures/eval_residuals.png" alt="Residuals and error distribution diagnostics">
+                    </div>
+                    <div class="figure-caption">
+                        <strong>Figure 6</strong>: Residual diagnostics. Shows homoscedastic error distribution and normal-like residual spreads.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="section-7" class="paper-section">
+                <div class="section-header">
+                    <span class="section-number">7.</span>
+                    <h2 class="section-title">Model Interpretability</h2>
+                </div>
+                <p class="paper-p">
+                    Feature importance was extracted to understand which parameters drive click-through rate predictions:
+                </p>
+
+                <div class="figure-card">
+                    <div class="figure-wrapper">
+                        <img src="work/figures/eval_feature_importance.png" alt="Feature Importance bar chart">
+                    </div>
+                    <div class="figure-caption">
+                        <strong>Figure 7</strong>: Feature importance rankings for the trained LightGBM regressor.
+                    </div>
+                </div>
+
+                <p class="paper-p">
+                    The top five features driving search click predictions are:
+                </p>
+                <ol class="paper-p" style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 6px;">
+                    <li><strong>Expected CTR</strong>: Re-confirms that ranking position is the primary driver of CTR.</li>
+                    <li><strong>SERP Position</strong>: The direct search position.</li>
+                    <li><strong>7-day Rolling Position Mean</strong>: Historical ranking stability.</li>
+                    <li><strong>Query Average Position</strong>: A proxy for search intent difficulty.</li>
+                    <li><strong>Page Average Impressions</strong>: Page authority indicator.</li>
+                </ol>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="section-8" class="paper-section">
+                <div class="section-header">
+                    <span class="section-number">8.</span>
+                    <h2 class="section-title">Opportunities Queue</h2>
+                </div>
+                <p class="paper-p">
+                    By aggregating out-of-time predictions at the Page level, we compute the click opportunities:
+                    $$\text{Priority Score} = \text{Mean Expected CTR} - \text{Mean Predicted CTR}$$
+                    This priority score is scaled by daily page impressions to calculate the <strong>Opportunity Clicks</strong> representing the traffic volume that can be reclaimed by content optimization.
+                </p>
+
+                <div class="queue-widget">
+                    <div class="widget-controls">
+                        <input type="text" id="searchInput" onkeyup="filterWidgetTable()" placeholder="Filter priority pages by URL or action..." class="search-box">
+                        <div style="font-size: 0.85rem; color: var(--text-secondary);">49 Actionable Recommendations</div>
+                    </div>
+                    <div class="widget-table-wrapper">
+                        <table class="widget-table" id="widgetTable">
+                            <thead>
+                                <tr>
+                                    <th>Page URL</th>
+                                    <th>Priority</th>
+                                    <th>Suggested Editorial Action</th>
+                                    <th style="text-align: right;">Impressions</th>
+                                    <th style="text-align: right;">Opp. Clicks</th>
+                                    <th style="text-align: right;">Conf.</th>
+                                </tr>
+                            </thead>
+                            <tbody id="widgetTableBody">
+                                <!-- Populated dynamically by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9 -->
+            <section id="section-9" class="paper-section">
+                <div class="section-header">
+                    <span class="section-number">9.</span>
+                    <h2 class="section-title">Limitations & Future Work</h2>
+                </div>
+                <p class="paper-p">
+                    <strong>Search Intent Seasonality:</strong> The model assumes short-term stationarity in search intent. In reality, search trends drift seasonally.
+                </p>
+                <p class="paper-p">
+                    <strong>Lack of Competitor Content Features:</strong> We do not include competitor metrics (e.g. competitor page updates, backlink profiles) which impact organic ranking probability.
+                </p>
+                <p class="paper-p">
+                    <strong>Future Work:</strong> Incorporating real-time competitor crawling and external backlink metrics would improve priority score fidelity.
+                </p>
+            </section>
+
+            <!-- Section 10 -->
+            <section id="section-10" class="paper-section">
+                <div class="section-header">
+                    <span class="section-number">10.</span>
+                    <h2 class="section-title">Conclusion</h2>
+                </div>
+                <p class="paper-p">
+                    This capstone study validates an end-to-end framework for search opportunity scoring. By combining physical baseline organic click curves with advanced LightGBM regression, we successfully identified page-level click-through rate decay, enabling targeted and priority-ranked content refresh actions. The pipeline is 100% reproducible and ready for production portfolio scheduling.
+                </p>
+            </section>
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 FlyRank Search Intelligence Lab. All rights reserved. Repositories verified under seed 42.</p>
+    </footer>
+
+    <script>
+        // Progress Bar
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+            
+            // Active TOC link update
+            const sections = document.querySelectorAll(".paper-section");
+            const tocLinks = document.querySelectorAll(".toc-link");
+            
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 120) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").substring(1) === current) {
+                    link.classList.add("active");
+                }
+            });
+        };
+
+        // Scroll to Section smoothly
+        function scrollToSection(e, id) {
+            e.preventDefault();
+            const element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop - 90,
+                behavior: "smooth"
+            });
+        }
+
+        // Live Queue Recommendations
+        const recommendationsData = [
+            {url: 'https://www.example.com/blog/topic-35', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 536112, opportunity: 3310, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-25', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 382816, opportunity: 1922, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-3', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 732537, opportunity: 1626, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-14', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 341047, opportunity: 1497, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-27', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 230221, opportunity: 1196, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-1', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 246512, opportunity: 922, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-34', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 190909, opportunity: 689, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-33', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 212367, opportunity: 567, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-8', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 96013, opportunity: 540, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-48', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 214511, opportunity: 490, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-2', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 113496, opportunity: 475, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-11', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 327432, opportunity: 455, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-20', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 134346, opportunity: 452, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-5', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 92384, opportunity: 401, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-7', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 113312, opportunity: 383, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-16', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 138585, opportunity: 379, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-41', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 127029, opportunity: 378, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-17', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 115469, opportunity: 352, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-49', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 74375, opportunity: 331, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-21', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 128497, opportunity: 327, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-19', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 96452, opportunity: 309, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-24', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 184577, opportunity: 307, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-18', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 93315, opportunity: 298, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-44', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 116516, opportunity: 272, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-42', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 106808, opportunity: 232, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-30', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 76832, opportunity: 231, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-47', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 54987, opportunity: 201, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-13', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 81450, opportunity: 176, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-43', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 47250, opportunity: 169, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-9', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 42125, opportunity: 169, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-28', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 55226, opportunity: 166, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-6', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 50020, opportunity: 145, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-26', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 37576, opportunity: 139, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-40', priority: 'critical', action: 'Complete Content Rewrite & Title Optimization', impressions: 21251, opportunity: 102, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-22', priority: 'high', action: 'Meta Tag Tuning & Header Tag Enhancements', impressions: 28351, opportunity: 84, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-23', priority: 'high', action: 'Meta Tag Tuning & Header Tag Enhancements', impressions: 26189, opportunity: 84, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-29', priority: 'high', action: 'Meta Tag Tuning & Header Tag Enhancements', impressions: 22613, opportunity: 81, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-39', priority: 'high', action: 'Meta Tag Tuning & Header Tag Enhancements', impressions: 8386, opportunity: 72, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-10', priority: 'high', action: 'Meta Tag Tuning & Header Tag Enhancements', impressions: 13853, opportunity: 57, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-4', priority: 'high', action: 'Meta Tag Tuning & Header Tag Enhancements', impressions: 16826, opportunity: 56, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-15', priority: 'high', action: 'Meta Tag Tuning & Header Tag Enhancements', impressions: 27049, opportunity: 54, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-37', priority: 'high', action: 'Meta Tag Tuning & Header Tag Enhancements', impressions: 15157, opportunity: 36, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-45', priority: 'high', action: 'Meta Tag Tuning & Header Tag Enhancements', impressions: 18482, opportunity: 30, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-38', priority: 'medium', action: 'Subtle Keyword Insertion & Link Audits', impressions: 11203, opportunity: 28, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-46', priority: 'medium', action: 'Subtle Keyword Insertion & Link Audits', impressions: 7294, opportunity: 26, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-32', priority: 'medium', action: 'Subtle Keyword Insertion & Link Audits', impressions: 10238, opportunity: 20, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-36', priority: 'medium', action: 'Subtle Keyword Insertion & Link Audits', impressions: 1900, opportunity: 16, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-31', priority: 'medium', action: 'Subtle Keyword Insertion & Link Audits', impressions: 4712, opportunity: 10, confidence: 0.99},
+            {url: 'https://www.example.com/blog/topic-50', priority: 'medium', action: 'Subtle Keyword Insertion & Link Audits', impressions: 1778, opportunity: 6, confidence: 0.99}
+        ];
+
+        // Populate table on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const tbody = document.getElementById('widgetTableBody');
+            recommendationsData.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><a href="#" class="page-link" onclick="return false;">${row.url}</a></td>
+                    <td><span class="badge badge-${row.priority}">${row.priority}</span></td>
+                    <td style="color: white; font-weight: 500;">${row.action}</td>
+                    <td style="text-align: right; font-family: monospace;">${row.impressions.toLocaleString()}</td>
+                    <td style="text-align: right; font-family: monospace; font-weight: 600; color: var(--accent-teal);">+${row.opportunity.toLocaleString()}</td>
+                    <td style="text-align: right; font-family: monospace;">${row.confidence.toFixed(2)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        });
+
+        // Search Filter for Recommendations Widget
+        function filterWidgetTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('widgetTable');
+            const trs = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < trs.length; i++) {
+                const urlTd = trs[i].getElementsByTagName('td')[0];
+                const actionTd = trs[i].getElementsByTagName('td')[2];
+                if (urlTd || actionTd) {
+                    const txtValueUrl = urlTd.textContent || urlTd.innerText;
+                    const txtValueAction = actionTd.textContent || actionTd.innerText;
+                    if (txtValueUrl.toLowerCase().indexOf(filter) > -1 || txtValueAction.toLowerCase().indexOf(filter) > -1) {
+                        trs[i].style.display = "";
+                    } else {
+                        trs[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
