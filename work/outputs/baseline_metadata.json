@@ -1,0 +1,13 @@
+{
+  "rows": 30000,
+  "top_score": 0.884600248888889,
+  "median_score": 0.0,
+  "base_decline_rate": 0.5420666666666667,
+  "precision_50": 0.8,
+  "precision_100": 0.77,
+  "score_formula": {
+    "freshness_risk_score_percentile": 1.0,
+    "newness_score_percentile": 1.0,
+    "low_ctr_score_binary": 1.0
+  }
+}
