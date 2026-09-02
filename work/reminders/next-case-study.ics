@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Subhadeep Bhadra//Portfolio reminders//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:seo-refresh-monitoring-20260910@subhflyrank-internship
+DTSTAMP:20260903T000000Z
+DTSTART:20260910T090000Z
+DTEND:20260910T093000Z
+SUMMARY:Build the SEO Refresh Monitoring case study
+DESCRIPTION:Create or update work/case-studies/seo-refresh-monitoring using the Week 2 three-beat structure: problem, what I did, what came of it. Preserve the Claude Project and repository context.
+RRULE:FREQ=MONTHLY;BYDAY=TH;BYSETPOS=2
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

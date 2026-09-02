@@ -3,6 +3,8 @@
 Everything you build lives here: lane experiments, notebooks, figures, and your capstone
 report. The rest of the repo is the shared reference; this folder is yours.
 
+The next portfolio case is planned in [NEXT_CASE_STUDY_PLAN.md](NEXT_CASE_STUDY_PLAN.md), with its destination scaffolded at `case-studies/seo-refresh-monitoring/` and a recurring reminder in `reminders/next-case-study.ics`.
+
 ## Rules of the road
 
 1. **Copy, don't edit.** Need to change the pipeline? Copy the script here
