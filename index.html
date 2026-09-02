@@ -604,7 +604,7 @@
         <div class="abstract-card">
             <div class="abstract-title">Abstract</div>
             <p class="abstract-text">
-                Organic search traffic is a primary acquisition channel for web platforms, yet page performance naturally decays over time due to content obsolescence, search engine algorithm updates, and intensifying competitor activity. Traditionally, identifying which pages to refresh first has relied on simple heuristics. This paper introduces a predictive framework for page-level content opportunity scoring. Using search intelligence data from the FlyRank database, we fit an organic CTR power-law curve to model baseline search performance. We then engineer time-series features (rolling averages, volatility, and momentum) and train a LightGBM regressor to predict out-of-time page CTR. By comparing predicted performance to the theoretical organic baseline, we compute a <em>Priority Score</em> to rank content refresh opportunities. On an out-of-time validation set (March 2026), our LightGBM model achieves an R² of 90.79% and a Mean Absolute Error (MAE) of 0.0069, outperforming the baseline organic click curve. The output is a prioritized, actionable queue of 49 page recommendations complete with suggested editorial actions to maximize organic traffic recovery.
+                <strong>The FlyRank Content Decay Problem:</strong> Organic search traffic is a primary acquisition channel for web platforms, yet page performance naturally decays over time due to content obsolescence, search engine algorithm updates, and intensifying competitor activity. At FlyRank, the critical question editors face is: <em>"Out of thousands of pages, which one should we refresh first to reclaim the most organic traffic?"</em> Traditionally, this has been answered by hand-written rules and simple heuristics. This paper validates a data-driven alternative. Using search intelligence data from the FlyRank database, we engineer a two-stage framework: first fitting an organic CTR power-law curve to model baseline search performance, then training a LightGBM regressor to predict out-of-time page CTR using time-series features (rolling averages, volatility, momentum). By comparing predicted performance to the theoretical organic baseline, we compute a <em>Priority Score</em> that ranks content refresh opportunities. On an out-of-time validation set (March 2026), our LightGBM model achieves an R² of 90.79% and a Mean Absolute Error (MAE) of 0.0069, improving upon hand-written baseline rules. The output is a prioritized, actionable queue of 49 page recommendations with suggested editorial actions, ready for immediate use in FlyRank's content optimization pipeline.
             </p>
         </div>
     </div>
@@ -634,10 +634,10 @@
                     <h2 class="section-title">Introduction</h2>
                 </div>
                 <p class="paper-p">
-                    Organic search traffic represents a primary customer acquisition mechanism for web platforms. However, search relevance is not static. Over time, pages that once commanded high positions in Search Engine Result Pages (SERPs) experience a slow decay in clicks and impressions—a phenomenon known as <strong>content decay</strong>.
+                    Organic search traffic represents a primary customer acquisition mechanism for web platforms. At <strong>FlyRank</strong>, which builds content as infrastructure for clients—researching, writing, publishing, and optimizing pages at scale—search performance is everything. However, search relevance is not static. Over time, pages that once commanded high positions in Search Engine Result Pages (SERPs) experience a slow decay in clicks and impressions—a phenomenon known as <strong>content decay</strong>. This decay is the central problem FlyRank's editorial teams must solve daily.
                 </p>
                 <p class="paper-p">
-                    Content decay occurs due to content obsolescence (information becoming outdated), competitor updates (competitors improving their pages to displace historical ranks), and snippet mismatch (meta-titles and descriptions failing to align with shifting query intent). Identifying which pages to optimize first is a key challenge in portfolio-scale Search Engine Optimization (SEO). Editorial resources are limited; hence, a scoring framework that estimates traffic recovery potential is essential.
+                    Content decay occurs due to three primary mechanisms: content obsolescence (information becoming outdated), competitor updates (competitors improving their pages to displace historical ranks), and snippet mismatch (meta-titles and descriptions failing to align with shifting query intent). When managing thousands of pages, FlyRank editors face a critical prioritization challenge: <strong>"Which pages should we refresh first to reclaim the most organic traffic?"</strong> This is a ranking problem on messy, real search data—exactly where a learned model can outperform hand-written rules. Today, FlyRank's product already flags pages using fixed heuristics (health scores, quick-win tags, needs-attention flags), but these rules encode static thresholds chosen by hand. This paper validates a data-driven alternative that can beat those rules where signals are tangled and shifting.
                 </p>
             </section>
 
@@ -648,13 +648,13 @@
                     <h2 class="section-title">Problem Statement</h2>
                 </div>
                 <p class="paper-p">
-                    The core research question of this study is:
+                    <strong>The FlyRank Content Refresh Decision:</strong> The core research question of this study is:
                     <br><em style="color: var(--accent-teal); font-weight: 500; padding-left: 1rem; border-left: 2px solid var(--accent-teal); display: block; margin: 1rem 0;">
-                        "Which pages should be refreshed first based on historical search performance to maximize future organic growth?"
+                        "For a given page and date, what is the predicted organic Click-Through Rate (CTR), and how much traffic opportunity exists if that page is refreshed to close the gap between expected and actual performance?"
                     </em>
                 </p>
                 <p class="paper-p">
-                    We formulate this as a regression task at the <strong>Page-Date</strong> level. Let $Y_{it}$ represent the Click-Through Rate (CTR) of page $i$ at date $t$. The priority score is derived by taking the difference between the theoretical organic CTR (the expected CTR based on its ranking position) and the model's predicted CTR. Pages with a large positive delta represent the greatest opportunity for traffic recovery upon content refresh.
+                    This framing turns a forecasting task into an <strong>opportunity ranking</strong>. We formulate this as a regression task at the <strong>Page-Date</strong> level. Let $Y_{it}$ represent the Click-Through Rate (CTR) of page $i$ at date $t$. The priority score is derived by comparing predicted performance to the theoretical organic CTR (the expected CTR based on its ranking position and historical organic click curve). Pages with a large positive difference between expected and predicted CTR represent the greatest opportunity for traffic recovery upon editorial refresh. This output directly informs FlyRank's editorial queue: which pages should editors tackle first to deliver maximum traffic recovery for clients.
                 </p>
             </section>
 
