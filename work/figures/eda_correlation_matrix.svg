@@ -13,4 +13,6 @@
   <text x="300" y="430" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Clicks</text>
   <text x="390" y="430" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Position</text>
   <text x="450" y="465" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Pearson r (negative: inverse association; positive: direct association)</text>
+  <text x="450" y="150" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Metric (x-axis)</text>
+  <text x="125" y="290" text-anchor="middle" transform="rotate(-90 125 290)" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Metric (y-axis)</text>
 </svg>

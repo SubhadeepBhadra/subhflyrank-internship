@@ -6,11 +6,12 @@
   <rect x="120" y="180" width="140" height="180" fill="#4e79a7" opacity="0.9"/>
   <rect x="310" y="150" width="140" height="210" fill="#59a14f" opacity="0.9"/>
   <rect x="500" y="220" width="140" height="140" fill="#f28e2b" opacity="0.9"/>
-  <rect x="690" y="170" width="90" height="190" fill="#e15759" opacity="0.9"/>
   <path d="M120 330 C220 310, 280 260, 310 240 S420 220, 500 260 S620 320, 690 260" stroke="#263238" stroke-width="3" fill="none" stroke-linecap="round"/>
   <text x="190" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Position</text>
   <text x="380" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Log impressions</text>
   <text x="570" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">CTR</text>
   <text x="100" y="385" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#546e7a">0</text>
   <text x="100" y="155" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#546e7a">density</text>
+  <text x="450" y="445" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Metric</text>
+  <text x="65" y="255" text-anchor="middle" transform="rotate(-90 65 255)" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Relative frequency</text>
 </svg>
