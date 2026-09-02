@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
   <rect width="900" height="520" fill="#ffffff"/>
   <rect x="40" y="40" width="820" height="440" fill="#ffffff" stroke="#d6dde5"/>
-  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="600" fill="#263238">Figure 2</text>
-  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#546e7a">Daily impressions and clicks over time</text>
+  <line x1="110" y1="250" x2="780" y2="250" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="110" y1="185" x2="780" y2="185" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="4 4"/>
   <path d="M120 340 C190 310, 240 260, 290 280 S390 330, 450 300 S560 230, 650 260 S760 320, 780 220" stroke="#4e79a7" stroke-width="3" fill="none" stroke-linecap="round"/>
   <path d="M120 360 C190 330, 240 290, 290 300 S390 350, 450 320 S560 250, 650 280 S760 340, 780 240" stroke="#e15759" stroke-width="3" fill="none" stroke-linecap="round"/>
   <line x1="110" y1="380" x2="780" y2="380" stroke="#78909c" stroke-width="2"/>
@@ -10,4 +10,10 @@
   <text x="170" y="415" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Week 1</text>
   <text x="450" y="415" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Week 2</text>
   <text x="730" y="415" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Week 3</text>
+  <text x="445" y="450" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Observation date</text>
+  <text x="78" y="250" text-anchor="middle" transform="rotate(-90 78 250)" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Daily volume</text>
+  <line x1="625" y1="145" x2="655" y2="145" stroke="#4e79a7" stroke-width="3"/>
+  <text x="665" y="150" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#37474f">Impressions</text>
+  <line x1="625" y1="165" x2="655" y2="165" stroke="#e15759" stroke-width="3"/>
+  <text x="665" y="170" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#37474f">Clicks</text>
 </svg>

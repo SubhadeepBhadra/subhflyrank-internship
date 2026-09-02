@@ -793,7 +793,7 @@
                         <img src="work/figures/eda_correlation_matrix.svg" alt="Key metrics correlation matrix heatmap">
                     </div>
                     <div class="figure-caption">
-                        <strong>Figure 3:</strong> Pearson correlations (p<0.01). Position ↔ CTR (r=-0.46), Position ↔ Clicks (r=-0.17). Impressions ↔ Clicks (r=0.78). No multicollinearity detected (VIF<5).
+                        <strong>Figure 3:</strong> Pairwise Pearson correlations among the search metrics. The coefficients describe linear association and should not be interpreted as causal effects.
                     </div>
                 </div>
             </section>
@@ -820,7 +820,7 @@
                         <img src="work/figures/eda_organic_click_curve.svg" alt="Organic click-through rate curve">
                     </div>
                     <div class="figure-caption">
-                        <strong>Figure 4:</strong> Power-law fit: CTR = 0.3362 × Rank⁻¹·⁰⁵⁹ (R²=0.91, RMSE=0.0107). Fitted on training split (Jan–Feb 2026); 95% CI bands shown.
+                        <strong>Figure 4:</strong> Baseline CTR relationship by search position. The fitted curve is used as a descriptive benchmark for ranking performance.
                     </div>
                 </div>
 
@@ -922,7 +922,7 @@
                         <img src="work/figures/eval_actual_vs_pred.svg" alt="Actual vs Predicted CTR scatter plot">
                     </div>
                     <div class="figure-caption">
-                        <strong>Figure 5:</strong> LightGBM out-of-sample predictions (test set, n=5,260). Dashed line: perfect prediction. LightGBM exhibits tighter residuals near the diagonal vs. baseline.
+                        <strong>Figure 5:</strong> Model score comparison on held-out observations. The dashed diagonal is the equal-prediction reference; distance from it represents prediction error.
                     </div>
                 </div>
 
@@ -931,7 +931,7 @@
                         <img src="work/figures/eval_residuals.svg" alt="Residuals and error distribution diagnostics">
                     </div>
                     <div class="figure-caption">
-                        <strong>Figure 6:</strong> Residual analysis: Q-Q plot confirms near-normality (Shapiro-Wilk p=0.62); homoscedasticity holds (Breusch-Pagan p=0.71). No systematic bias.
+                        <strong>Figure 6:</strong> Residual and calibration diagnostics. The reference line supports visual inspection of error structure; formal distributional tests are not claimed here.
                     </div>
                 </div>
             </section>
@@ -951,7 +951,7 @@
                         <img src="work/figures/eval_feature_importance.svg" alt="Feature Importance bar chart">
                     </div>
                     <div class="figure-caption">
-                        <strong>Figure 7:</strong> Shapley-based feature importance (LightGBM). Top 3 account for 71% of model output variance. Ranking position proxy features dominate; trend momentum adds 12%.
+                        <strong>Figure 7:</strong> Relative feature importance for the selected classifier. Larger bars indicate greater contribution to the model's ranking signal; importance is not a causal effect.
                     </div>
                 </div>
 

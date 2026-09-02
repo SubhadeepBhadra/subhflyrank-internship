@@ -1,8 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
   <rect width="900" height="520" fill="#ffffff"/>
   <rect x="40" y="40" width="820" height="440" fill="#ffffff" stroke="#d6dde5"/>
-  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="600" fill="#263238">Figure 5</text>
-  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#546e7a">Out-of-sample actual versus predicted CTR</text>
   <line x1="140" y1="390" x2="760" y2="110" stroke="#78909c" stroke-width="2" stroke-dasharray="6 6"/>
   <line x1="140" y1="390" x2="140" y2="110" stroke="#78909c" stroke-width="2"/>
   <line x1="140" y1="390" x2="760" y2="390" stroke="#78909c" stroke-width="2"/>
@@ -13,4 +11,7 @@
   <circle cx="540" cy="205" r="5" fill="#4e79a7"/>
   <circle cx="620" cy="180" r="5" fill="#4e79a7"/>
   <circle cx="700" cy="150" r="5" fill="#4e79a7"/>
+  <text x="450" y="425" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Observed value</text>
+  <text x="90" y="250" text-anchor="middle" transform="rotate(-90 90 250)" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Predicted value</text>
+  <text x="600" y="125" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#546e7a">y = x reference</text>
 </svg>

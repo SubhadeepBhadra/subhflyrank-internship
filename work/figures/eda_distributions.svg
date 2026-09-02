@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
   <rect width="900" height="520" fill="#ffffff"/>
   <rect x="40" y="40" width="820" height="440" fill="#ffffff" stroke="#d6dde5"/>
-  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="600" fill="#263238">Figure 1</text>
-  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#546e7a">Empirical distributions of search metrics</text>
+  <line x1="100" y1="360" x2="800" y2="360" stroke="#78909c" stroke-width="2"/>
+  <line x1="100" y1="150" x2="100" y2="360" stroke="#78909c" stroke-width="2"/>
   <rect x="120" y="180" width="140" height="180" fill="#4e79a7" opacity="0.9"/>
   <rect x="310" y="150" width="140" height="210" fill="#59a14f" opacity="0.9"/>
   <rect x="500" y="220" width="140" height="140" fill="#f28e2b" opacity="0.9"/>
@@ -11,4 +11,6 @@
   <text x="190" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Position</text>
   <text x="380" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Log impressions</text>
   <text x="570" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">CTR</text>
+  <text x="100" y="385" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#546e7a">0</text>
+  <text x="100" y="155" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#546e7a">density</text>
 </svg>

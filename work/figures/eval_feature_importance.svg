@@ -1,8 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
   <rect width="900" height="520" fill="#ffffff"/>
   <rect x="40" y="40" width="820" height="440" fill="#ffffff" stroke="#d6dde5"/>
-  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="600" fill="#263238">Figure 7</text>
-  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#546e7a">Random-forest feature importance</text>
+  <line x1="140" y1="255" x2="760" y2="255" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="140" y1="195" x2="760" y2="195" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="140" y1="315" x2="760" y2="315" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="4 4"/>
   <rect x="180" y="260" width="70" height="120" fill="#4e79a7"/>
   <rect x="300" y="220" width="70" height="160" fill="#4e79a7"/>
   <rect x="420" y="240" width="70" height="140" fill="#4e79a7"/>
@@ -10,4 +11,6 @@
   <rect x="660" y="300" width="70" height="80" fill="#4e79a7"/>
   <line x1="140" y1="390" x2="760" y2="390" stroke="#78909c" stroke-width="2"/>
   <line x1="140" y1="120" x2="140" y2="390" stroke="#78909c" stroke-width="2"/>
+  <text x="450" y="425" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Feature rank</text>
+  <text x="88" y="255" text-anchor="middle" transform="rotate(-90 88 255)" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Relative importance</text>
 </svg>

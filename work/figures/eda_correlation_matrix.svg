@@ -1,8 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
   <rect width="900" height="520" fill="#ffffff"/>
   <rect x="40" y="40" width="820" height="440" fill="#ffffff" stroke="#d6dde5"/>
-  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="600" fill="#263238">Figure 3</text>
-  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#546e7a">Pairwise Pearson correlations</text>
   <rect x="170" y="160" width="260" height="260" fill="#ffffff" stroke="#b0bec5"/>
   <rect x="470" y="160" width="260" height="260" fill="#ffffff" stroke="#b0bec5"/>
   <rect x="190" y="180" width="60" height="60" fill="#4e79a7"/>
@@ -14,4 +12,5 @@
   <text x="220" y="430" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">CTR</text>
   <text x="300" y="430" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Clicks</text>
   <text x="390" y="430" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Position</text>
+  <text x="450" y="465" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Pearson r (negative: inverse association; positive: direct association)</text>
 </svg>

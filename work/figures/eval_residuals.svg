@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
   <rect width="900" height="520" fill="#ffffff"/>
   <rect x="40" y="40" width="820" height="440" fill="#ffffff" stroke="#d6dde5"/>
-  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="600" fill="#263238">Figure 6</text>
-  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#546e7a">Residual distribution and calibration check</text>
+  <line x1="140" y1="255" x2="760" y2="255" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="4 4"/>
   <line x1="140" y1="390" x2="760" y2="390" stroke="#78909c" stroke-width="2"/>
   <line x1="140" y1="390" x2="140" y2="120" stroke="#78909c" stroke-width="2"/>
   <path d="M140 360 C220 330, 260 310, 310 290 S420 260, 500 250 S640 230, 760 210" stroke="#4e79a7" stroke-width="3" fill="none"/>
   <path d="M140 370 C220 350, 260 330, 310 310 S420 280, 500 270 S640 250, 760 230" stroke="#e15759" stroke-width="3" fill="none"/>
+  <text x="450" y="425" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Fitted value</text>
+  <text x="95" y="255" text-anchor="middle" transform="rotate(-90 95 255)" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#546e7a">Residual</text>
 </svg>
