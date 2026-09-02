@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
-  <rect width="900" height="520" rx="20" fill="#07111f"/>
-  <rect x="40" y="40" width="820" height="440" rx="18" fill="#0f172a" stroke="#1e293b"/>
-  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#e2e8f0">Figure 4</text>
-  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#94a3b8">Organic click curve</text>
-  <path d="M120 360 C180 320, 230 260, 300 200 S420 130, 500 170 S660 260, 780 140" stroke="#06b6d4" stroke-width="5" fill="none" stroke-linecap="round"/>
-  <line x1="120" y1="380" x2="780" y2="380" stroke="#475569" stroke-width="2"/>
-  <line x1="120" y1="120" x2="120" y2="380" stroke="#475569" stroke-width="2"/>
-  <text x="450" y="415" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#cbd5e1">Search position</text>
+  <rect width="900" height="520" fill="#ffffff"/>
+  <rect x="40" y="40" width="820" height="440" fill="#ffffff" stroke="#d6dde5"/>
+  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="600" fill="#263238">Figure 4</text>
+  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#546e7a">Baseline CTR by search position</text>
+  <path d="M120 360 C180 320, 230 260, 300 200 S420 130, 500 170 S660 260, 780 140" stroke="#4e79a7" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <line x1="120" y1="380" x2="780" y2="380" stroke="#78909c" stroke-width="2"/>
+  <line x1="120" y1="120" x2="120" y2="380" stroke="#78909c" stroke-width="2"/>
+  <text x="450" y="415" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Search position</text>
 </svg>

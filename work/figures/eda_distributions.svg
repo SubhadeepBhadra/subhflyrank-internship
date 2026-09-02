@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
-  <rect width="900" height="520" rx="20" fill="#07111f"/>
-  <rect x="40" y="40" width="820" height="440" rx="18" fill="#0f172a" stroke="#1e293b"/>
-  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#e2e8f0">Figure 1</text>
-  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#94a3b8">Distributions of SERP rank position, log-impressions, and CTR</text>
-  <rect x="120" y="180" width="140" height="180" rx="10" fill="#06b6d4" opacity="0.9"/>
-  <rect x="310" y="150" width="140" height="210" rx="10" fill="#6366f1" opacity="0.9"/>
-  <rect x="500" y="220" width="140" height="140" rx="10" fill="#d946ef" opacity="0.9"/>
-  <rect x="690" y="170" width="90" height="190" rx="10" fill="#f59e0b" opacity="0.9"/>
-  <path d="M120 330 C220 310, 280 260, 310 240 S420 220, 500 260 S620 320, 690 260" stroke="#f8fafc" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <text x="190" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#cbd5e1">Position</text>
-  <text x="380" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#cbd5e1">Log impressions</text>
-  <text x="570" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#cbd5e1">CTR</text>
+  <rect width="900" height="520" fill="#ffffff"/>
+  <rect x="40" y="40" width="820" height="440" fill="#ffffff" stroke="#d6dde5"/>
+  <text x="450" y="95" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="600" fill="#263238">Figure 1</text>
+  <text x="450" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#546e7a">Empirical distributions of search metrics</text>
+  <rect x="120" y="180" width="140" height="180" fill="#4e79a7" opacity="0.9"/>
+  <rect x="310" y="150" width="140" height="210" fill="#59a14f" opacity="0.9"/>
+  <rect x="500" y="220" width="140" height="140" fill="#f28e2b" opacity="0.9"/>
+  <rect x="690" y="170" width="90" height="190" fill="#e15759" opacity="0.9"/>
+  <path d="M120 330 C220 310, 280 260, 310 240 S420 220, 500 260 S620 320, 690 260" stroke="#263238" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <text x="190" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Position</text>
+  <text x="380" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">Log impressions</text>
+  <text x="570" y="390" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#37474f">CTR</text>
 </svg>
